@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { Logo, Input, Button } from './index'
+import { Input, Button } from './index'
 import { login as authLogin } from '../store/authSlice'
 import authService from '../appwrite/auth'
 import { useForm } from 'react-hook-form'
@@ -30,9 +30,6 @@ function Login() {
             className='flex items-center justify-center w-full'
         >
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-                <div className="mb-3 flex justify-center">
-                    <Logo />
-                </div>
                 <h2 className="text-center text-2xl font-bold leading-tight">Sign in to your account</h2>
 
                 <p className="mt-2 text-center text-base text-black/60">

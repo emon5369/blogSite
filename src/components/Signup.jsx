@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import authService from '../appwrite/auth'
 import { login } from '../store/authSlice'
-import { Input, Button, Logo } from './index'
+import { Input, Button } from './index'
 import { useForm } from 'react-hook-form'
 
 function Signup() {
@@ -28,9 +28,6 @@ function Signup() {
     return (
         <div className="flex items-center justify-center">
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-                <div className="mb-3 flex justify-center">
-                    <Logo />
-                </div>
                 <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
 
                 <p className="mt-2 text-center text-base text-black/60">

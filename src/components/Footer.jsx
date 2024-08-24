@@ -9,11 +9,11 @@ function Footer() {
                     <div className="w-full p-6 md:w-1/2 lg:w-5/12">
                         <div className="flex h-full flex-col justify-between">
                             <div className="mb-4 inline-flex items-center">
-                                <Logo className="w-32" />
+                                <Logo className="sm:w-56 w-32" />
                             </div>
-                            <div>
+                            <div className='sm:block hidden'>
                                 <p className="text-sm text-gray-600">
-                                    &copy; Copyright 2023. All Rights Reserved by DevUI.
+                                    &copy; Copyright 2024. All Rights Reserved by Emon.
                                 </p>
                             </div>
                         </div>
@@ -122,7 +122,7 @@ function Footer() {
                                         Privacy Policy
                                     </Link>
                                 </li>
-                                <li>
+                                <li className='mb-4'>
                                     <Link
                                         className=" text-base font-medium text-gray-900 hover:text-gray-700"
                                         to="/"
@@ -133,6 +133,11 @@ function Footer() {
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div className='block sm:hidden text-center mt-2'>
+                    <p className="text-sm text-gray-600">
+                        &copy; Copyright 2024. All Rights Reserved by Emon.
+                    </p>
                 </div>
             </div>
         </section>

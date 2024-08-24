@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { Logo, Container, LogoutBtn } from "./index"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
 function Header() {
     const authStatus = useSelector((state) => state.auth.status)
@@ -32,29 +33,80 @@ function Header() {
             slug: '/add-post',
             active: authStatus
         },
-
     ]
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     return (
-        <header className="py-3 shadow bg-[#ECECEA]">
+        <header className="py-3 shadow bg-[#ECECEA] relative">
             <Container>
-                <nav className="flex items-center">
-                    <div className="mr-4"> <Link to='/'> <Logo /> </Link> </div>
-                    <ul className="flex ml-auto">
-                        {navItem.map((item) =>
-                            item.active ? (
-                                <li key={item.name}>
-                                    <button onClick={() => navigate(item.slug)}
-                                        className="inline-block px-6 py-2 duration-200 text-[#009B7D] hover:bg-[#f4a836] rounded-full">
-                                        {item.name}
-                                    </button>
+                <nav className="flex items-center justify-between">
+                    <div className="mr-4">
+                        <Link to='/'>
+                            <Logo className="sm:w-40 w-24"/>
+                        </Link>
+                    </div>
+                    <div className="flex items-center">
+                        {/* Menu Icon for small screens */}
+                        <button
+                            className="block lg:hidden text-[#009B7D] focus:outline-none"
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                            </svg>
+                        </button>
+
+                        {/* Navigation items for large screens */}
+                        <ul className="hidden lg:flex items-center lg:ml-auto">
+                            {navItem.map((item) =>
+                                item.active ? (
+                                    <li key={item.name} className="lg:ml-4">
+                                        <button onClick={() => navigate(item.slug)}
+                                            className="inline-block px-6 py-2 duration-200 text-[#009B7D] hover:bg-[#f4a836] rounded-full">
+                                            {item.name}
+                                        </button>
+                                    </li>
+                                ) : null
+                            )}
+                            {authStatus && (
+                                <li className="lg:ml-4">
+                                    <LogoutBtn />
                                 </li>
-                            ) : null)}
-                        {authStatus && (
-                            <li> <LogoutBtn /> </li>
-                        )}
-                    </ul>
+                            )}
+                        </ul>
+                    </div>
                 </nav>
             </Container>
+
+            {/* Overlay and Slide-in Menu for small screens */}
+            <div className={`fixed inset-0 z-50 bg-black bg-opacity-50 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} onClick={() => setIsMenuOpen(false)}></div>
+            <div className={`fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                <button
+                    className="absolute top-4 right-4 text-[#009B7D] focus:outline-none"
+                    onClick={() => setIsMenuOpen(false)}
+                >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <ul className="flex flex-col p-6 space-y-4">
+                    {navItem.map((item) =>
+                        item.active ? (
+                            <li key={item.name}>
+                                <button onClick={() => { navigate(item.slug); setIsMenuOpen(false); }}
+                                    className="inline-block px-6 py-2 duration-200 text-[#009B7D] hover:bg-[#f4a836] rounded-full">
+                                    {item.name}
+                                </button>
+                            </li>
+                        ) : null
+                    )}
+                    {authStatus && (
+                        <li>
+                            <LogoutBtn />
+                        </li>
+                    )}
+                </ul>
+            </div>
         </header>
     )
 }

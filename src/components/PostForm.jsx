@@ -11,7 +11,7 @@ function PostForm({ post }) {
             title: post?.title || "",
             slug: post?.slug || "",
             content: post?.content || "",
-            status: post?.status || ""
+            status: post?.status || "active"
         }
     })
 
@@ -74,12 +74,12 @@ function PostForm({ post }) {
 
     return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-            <div className="w-2/3 px-2">
+            <div className="sm:w-2/3 px-2 w-full">
                 <Input
                     label="Title :"
                     placeholder="Title"
                     className="mb-4"
-                    {...register("title", { required: true })}
+                    {...register("title", { required: true })}    //name=title
                 />
                 <Input
                     label="Slug :"
@@ -94,7 +94,7 @@ function PostForm({ post }) {
                 <RTE label="Content :" name="content" control={control}
                     defaultValue={getValues("content")} />
             </div>
-            <div className="w-1/3 px-2">
+            <div className="sm:w-1/3 px-2 w-full">
                 <Input
                     label="Featured Image :"
                     type="file"
@@ -115,6 +115,7 @@ function PostForm({ post }) {
                     options={["active", "inactive"]}
                     label="Status"
                     className="mb-4"
+                    defaultValue="active"
                     {...register("status", { required: true })}
                 />
                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">

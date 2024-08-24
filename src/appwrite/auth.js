@@ -17,39 +17,38 @@ export class AuthService {
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name);
             if (userAccount) {
+                alert("Account created successfully!")
                 return this.login({ email, password });
             } else {
                 return userAccount;
             }
         } catch (error) {
-            // throw error;
-            console.log(error);
+            alert(error);
         }
     }
 
     async login({ email, password }) {
         try {
+            alert("Login successfull!")
             return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
-            // throw error;
-            console.log(error);
+            alert(error);
         }
     }
     async getCurrentUser() {
         try {
             return await this.account.get();
         } catch (error) {
-            // throw error;
             console.log(error);
         }
         return null;
     }
     async logout() {
         try {
+            alert("You are logged out!")
             return await this.account.deleteSessions();
         } catch (error) {
-            // throw error;
-            console.log(error);
+            alert(error);
         }
     }
 }

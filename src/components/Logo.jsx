@@ -1,6 +1,6 @@
-function Logo() {
+function Logo({className=''}) {
   return (
-    <div className="w-40">
+    <div className={`${className}`}>
       <img src="logo-no-background.png" alt="logo" />
     </div>
   )
