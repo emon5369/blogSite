@@ -62,6 +62,15 @@
    npm run dev
    ```
    
+## Demo
+
+Check out the live demo of UBlog: [Click here](https://ublogsite.netlify.app/)
+
+**Demo Credentials:**
+
+- **Email**: emon@gmail.com
+- **Password**: 12345678
+
 ## Contribution
 
 Contributions are welcome! Please feel free to submit a Pull Request or open an Issue to discuss improvements or bug fixes.
