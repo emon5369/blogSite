@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form'
 function Signup() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, formState: {errors} } = useForm()
     const [error, setError] = useState("")
 
     const create = async (data) => {
@@ -55,18 +55,20 @@ function Signup() {
                             placeholder="Enter your mail"
                             type="email"
                             {...register("email", {
-                                required: true,
+                                required: "Email is required",
                                 validate: {
                                     matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                                         "Email address must be a valid address"
                                 }
                             })}
+                            error={errors.email?.message}
                         />
                         <Input
-                            label="Password:"
+                            label="Password: (8-30 characters)"
                             placeholder="Enter your password"
                             type="password"
-                            {...register("password", { required: true })}
+                            {...register("password", { required: "Password is required" })}
+                            error={errors.password?.message}
                         />
                         <Button type='submit' className='w-full'>Sign up</Button>
                     </div>

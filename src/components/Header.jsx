@@ -48,7 +48,7 @@ function Header() {
                     <div className="flex items-center">
                         {/* Menu Icon for small screens */}
                         <button
-                            className="block lg:hidden text-[#009B7D] focus:outline-none"
+                            className="block md:hidden text-[#009B7D] focus:outline-none"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -57,10 +57,10 @@ function Header() {
                         </button>
 
                         {/* Navigation items for large screens */}
-                        <ul className="hidden lg:flex items-center lg:ml-auto">
+                        <ul className="hidden md:flex items-center md:ml-auto">
                             {navItem.map((item) =>
                                 item.active ? (
-                                    <li key={item.name} className="lg:ml-4">
+                                    <li key={item.name} className="md:ml-4">
                                         <button onClick={() => navigate(item.slug)}
                                             className="inline-block px-6 py-2 duration-200 text-[#009B7D] hover:bg-[#f4a836] rounded-full">
                                             {item.name}
@@ -69,7 +69,7 @@ function Header() {
                                 ) : null
                             )}
                             {authStatus && (
-                                <li className="lg:ml-4">
+                                <li className="md:ml-4">
                                     <LogoutBtn />
                                 </li>
                             )}
@@ -80,16 +80,16 @@ function Header() {
 
             {/* Overlay and Slide-in Menu for small screens */}
             <div className={`fixed inset-0 z-50 bg-black bg-opacity-50 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} onClick={() => setIsMenuOpen(false)}></div>
-            <div className={`fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed top-0 right-0 w-64 h-full bg-white shadow-md z-50 transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <button
                     className="absolute top-4 right-4 text-[#009B7D] focus:outline-none"
                     onClick={() => setIsMenuOpen(false)}
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-8 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
-                <ul className="flex flex-col p-6 space-y-4">
+                <ul className="flex flex-col pt-10 space-y-4">
                     {navItem.map((item) =>
                         item.active ? (
                             <li key={item.name}>
@@ -97,6 +97,7 @@ function Header() {
                                     className="inline-block px-6 py-2 duration-200 text-[#009B7D] hover:bg-[#f4a836] rounded-full">
                                     {item.name}
                                 </button>
+                                <hr />
                             </li>
                         ) : null
                     )}
