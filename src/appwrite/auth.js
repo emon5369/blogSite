@@ -17,22 +17,26 @@ export class AuthService {
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name);
             if (userAccount) {
-                alert("Account created successfully!")
-                return this.login({ email, password });
-            } else {
+                alert("Account created successfully!");
+                await this.login({ email, password });
                 return userAccount;
+            } else {
+                return null;
             }
         } catch (error) {
-            alert(error);
+            alert(error.message);
+            return null; 
         }
-    }
+    }    
 
     async login({ email, password }) {
         try {
-            alert("Login successfull!")
-            return await this.account.createEmailPasswordSession(email, password);
+            const session = await this.account.createEmailPasswordSession(email, password);
+            alert("Login successful!");
+            return session;
         } catch (error) {
-            alert(error);
+            alert(error.message);
+            return null;
         }
     }
     async getCurrentUser() {
@@ -45,12 +49,15 @@ export class AuthService {
     }
     async logout() {
         try {
-            alert("You are logged out!")
-            return await this.account.deleteSessions();
+            await this.account.deleteSessions();
+            alert("You are logged out!");
+            return true; 
         } catch (error) {
-            alert(error);
+            alert(error.message);
+            return false;
         }
     }
+    
 }
 
 const authService = new AuthService();  //converting into object to use the class
