@@ -11,7 +11,7 @@ function Footer() {
                             <div className="mb-4 inline-flex items-center">
                                 <Logo className="sm:w-56 w-32" />
                             </div>
-                            <div className='sm:block hidden'>
+                            <div className='lg:block hidden'>
                                 <p className="text-sm text-gray-600">
                                     &copy; Copyright 2024. All Rights Reserved by Emon.
                                 </p>
@@ -134,7 +134,7 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className='block sm:hidden text-center mt-2'>
+                <div className='block lg:hidden text-center mt-2'>
                     <p className="text-sm text-gray-600">
                         &copy; Copyright 2024. All Rights Reserved by Emon.
                     </p>

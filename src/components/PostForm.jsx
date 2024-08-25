@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Input, Select, Button, RTE } from './index'
 import service from '../appwrite/config'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 function PostForm({ post }) {
     const { register, handleSubmit, watch, control, setValue, getValues } = useForm({
@@ -17,33 +17,44 @@ function PostForm({ post }) {
 
     const navigate = useNavigate()
     const userData = useSelector((state) => state.auth.userData)
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const submit = async (data) => {
-        
-        if (post) {
-            const file = data.image[0] ? service.uploadFile(data.image[0]) : null;
-            if (file) { service.deleteFile(post.featuredImage) }
+        setIsSubmitting(true); // Set to true when the form submission starts
+        try {
+            if (post) {
+                const file = data.image[0] ? await service.uploadFile(data.image[0]) : null; // Wait for file upload
+                if (file) {
+                    await service.deleteFile(post.featuredImage);
+                }
 
-            const dbPost = await service.updatePost(post.$id, {
-                ...data,
-                featuredImage: file ? file.$id : undefined
-            })
-            if (dbPost) {
-                navigate(`/post/${dbPost.$id}`)
-            }
-        } else {
-            const file = await service.uploadFile(data.image[0])
-            if (file) {
-                const fileId = file.$id;
-                data.featuredImage = fileId;
-                const dbPost = await service.createPost({
+                const dbPost = await service.updatePost(post.$id, {
                     ...data,
-                    userId: userData.$id
-                })
+                    featuredImage: file ? file.$id : undefined
+                });
+
                 if (dbPost) {
-                    navigate(`/post/${dbPost.$id}`)
+                    navigate(`/post/${dbPost.$id}`);
+                }
+            } else {
+                const file = await service.uploadFile(data.image[0]);
+                if (file) {
+                    const fileId = file.$id;
+                    data.featuredImage = fileId;
+                    const dbPost = await service.createPost({
+                        ...data,
+                        userId: userData.$id
+                    });
+
+                    if (dbPost) {
+                        navigate(`/post/${dbPost.$id}`);
+                    }
                 }
             }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+        } finally {
+            setIsSubmitting(false); // Set to false when the submission ends
         }
     }
 
@@ -119,7 +130,7 @@ function PostForm({ post }) {
                     {...register("status", { required: true })}
                 />
                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
-                    {post ? "Update" : "Submit"}
+                    {isSubmitting? "Submitting..." : post ? "Update" : "Submit"}
                 </Button>
             </div>
         </form>
