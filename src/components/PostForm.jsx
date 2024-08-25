@@ -6,7 +6,7 @@ import service from '../appwrite/config'
 import { useCallback, useEffect, useState } from 'react'
 
 function PostForm({ post }) {
-    const { register, handleSubmit, watch, control, setValue, getValues } = useForm({
+    const { register, handleSubmit, formState: {errors} , watch, control, setValue, getValues } = useForm({
         defaultValues: {
             title: post?.title || "",
             slug: post?.slug || "",
@@ -18,9 +18,14 @@ function PostForm({ post }) {
     const navigate = useNavigate()
     const userData = useSelector((state) => state.auth.userData)
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isUpdating, setIsUpdating] = useState(false);
 
     const submit = async (data) => {
-        setIsSubmitting(true); // Set to true when the form submission starts
+        if (post) {
+            setIsUpdating(true); 
+        } else {
+            setIsSubmitting(true);
+        }
         try {
             if (post) {
                 const file = data.image[0] ? await service.uploadFile(data.image[0]) : null; // Wait for file upload
@@ -54,22 +59,17 @@ function PostForm({ post }) {
         } catch (error) {
             console.error("Error submitting form:", error);
         } finally {
-            setIsSubmitting(false); // Set to false when the submission ends
+            setIsSubmitting(false);
+            setIsUpdating(false);
         }
     }
 
     const slugTransform = useCallback((value) => {
         if (value && typeof value === 'string') {
-            //two ways:
-
             const slug = value.toLowerCase().replace(/ /g, '-')
             setValue('slug', slug)
             return slug;
-
-            // return value.trim().toLowerCase()
-            //     .replace(/[^a-zA-Z\d\s]+/g, '-')
-            //     .replace(/\s/g, '-')              //can use one replace
-        }
+            }
     }, [])
 
     useEffect(() => {
@@ -90,7 +90,8 @@ function PostForm({ post }) {
                     label="Title :"
                     placeholder="Title"
                     className="mb-4"
-                    {...register("title", { required: true })}    //name=title
+                    {...register("title", { required: true })}    //name set to title
+                    error={errors.title?.message}
                 />
                 <Input
                     label="Slug :"
@@ -101,9 +102,12 @@ function PostForm({ post }) {
                         setValue("slug", slugTransform(e.currentTarget.value),
                             { shouldValidate: true });
                     }}
+                    error={errors.slug?.message}
                 />
                 <RTE label="Content :" name="content" control={control}
-                    defaultValue={getValues("content")} />
+                    defaultValue={getValues("content")} 
+                    error={errors.content?.message}
+                    />
             </div>
             <div className="sm:w-1/3 px-2 w-full">
                 <Input
@@ -112,6 +116,7 @@ function PostForm({ post }) {
                     className="mb-4"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { required: !post })}
+                    error={errors.image?.message}
                 />
                 {post && (
                     <div className="w-full mb-4">
@@ -130,7 +135,7 @@ function PostForm({ post }) {
                     {...register("status", { required: true })}
                 />
                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
-                    {isSubmitting? "Submitting..." : post ? "Update" : "Submit"}
+                {isSubmitting ? "Submitting..." : isUpdating ? "Updating..." : post ? "Update" : "Submit"}
                 </Button>
             </div>
         </form>
