@@ -46,7 +46,7 @@ function Header() {
                         </Link>
                     </div>
                     <div className="flex items-center">
-                        {/* Menu Icon for small screens */}
+                        {/* Menu Icon*/}
                         <button
                             className="block md:hidden text-[#009B7D] focus:outline-none"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -56,20 +56,19 @@ function Header() {
                             </svg>
                         </button>
 
-                        {/* Navigation items for large screens */}
                         <ul className="hidden md:flex items-center md:ml-auto">
                             {navItem.map((item) =>
                                 item.active ? (
-                                    <li key={item.name} className="md:ml-4">
+                                    <li key={item.name} className="md:ml-4 text-lg">
                                         <button onClick={() => navigate(item.slug)}
-                                            className="inline-block px-6 py-2 duration-200 text-[#009B7D] hover:bg-[#f4a836] rounded-full">
+                                            className="inline-block px-6 py-2 duration-200 font-bold text-[#009B7D] hover:bg-yellow-100 rounded-full">
                                             {item.name}
                                         </button>
                                     </li>
                                 ) : null
                             )}
                             {authStatus && (
-                                <li className="md:ml-4">
+                                <li className="md:ml-4 text-lg">
                                     <LogoutBtn />
                                 </li>
                             )}
@@ -78,7 +77,7 @@ function Header() {
                 </nav>
             </Container>
 
-            {/* Overlay and Slide-in Menu for small screens */}
+            {/* Slide Menu for small screens */}
             <div className={`fixed inset-0 z-50 bg-black bg-opacity-50 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} onClick={() => setIsMenuOpen(false)}></div>
             <div className={`fixed top-0 right-0 w-64 h-full bg-white shadow-md z-50 transform transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <button

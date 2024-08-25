@@ -9,8 +9,9 @@ import { useForm } from 'react-hook-form'
 function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { register, handleSubmit, formState: {errors} } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const [error, setError] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
 
     const login = async (data) => {
         setError("")
@@ -38,7 +39,7 @@ function Login() {
                         to="/signup"
                         className="font-medium text-primary transition-all duration-200 hover:underline"
                     >
-                        Sign Up
+                        <span className="text-[#f4a836]">Sign Up</span>
                     </Link>
                 </p>
 
@@ -59,13 +60,25 @@ function Login() {
                             })}
                             error={errors.email?.message}
                         />
-                        <Input
-                            label="Password:"
-                            placeholder="Enter your password"
-                            type="password"
-                            {...register("password", { required: "Password is required" })}
-                            error={errors.password?.message}
-                        />
+                        <div className="relative">
+                            <Input
+                                label="Password:"
+                                placeholder="Enter your password"
+                                type={showPassword? "text" : "password"}
+                                {...register("password", { required: "Password is required" })}
+                                error={errors.password?.message}
+                            />
+                            <button
+                                type="button"
+                                onClick={()=> {
+                                    setShowPassword(!showPassword);
+                                }}
+                                className="absolute inset-y-0 top-7 right-0 pr-3 flex items-center text-sm leading-5"
+                            >
+                                {showPassword ? <span className='text-blue-500 text-base font-mono font-extrabold'>Hide</span> : <span className='text-red-500 text-base font-mono font-extrabold'>Show</span>}
+                                
+                            </button>
+                        </div>
                         <Button type='submit' className='w-full'>Sign In</Button>
                     </div>
                 </form>

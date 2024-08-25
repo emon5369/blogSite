@@ -9,8 +9,9 @@ import { useForm } from 'react-hook-form'
 function Signup() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { register, handleSubmit, formState: {errors} } = useForm()
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const [error, setError] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
 
     const create = async (data) => {
         setError("");
@@ -18,7 +19,7 @@ function Signup() {
             const userData = await authService.createAccount(data)
             if (userData) {
                 const userData = await authService.getCurrentUser()
-                if (userData) dispatch(login({userData}));
+                if (userData) dispatch(login({ userData }));
                 navigate("/")
             }
         } catch (error) {
@@ -36,7 +37,7 @@ function Signup() {
                         to="/login"
                         className="font-medium text-primary transition-all duration-200 hover:underline"
                     >
-                        Sign In
+                        <span className="text-[#f4a836]">Sign in</span>
                     </Link>
                 </p>
 
@@ -63,13 +64,24 @@ function Signup() {
                             })}
                             error={errors.email?.message}
                         />
-                        <Input
-                            label="Password: (8-30 characters)"
-                            placeholder="Enter your password"
-                            type="password"
-                            {...register("password", { required: "Password is required" })}
-                            error={errors.password?.message}
-                        />
+                        <div className="relative">
+                            <Input
+                                label="Password: (8-30 characters)"
+                                placeholder="Enter your password"
+                                type={showPassword ? "text" : "password"}
+                                {...register("password", { required: "Password is required" })}
+                                error={errors.password?.message}
+                            />
+                            <button
+                                type="button"
+                                onClick={()=> {
+                                    setShowPassword(!showPassword);
+                                }}
+                                className="absolute inset-y-0 top-7 right-0 pr-3 flex items-center text-sm leading-5"
+                            >
+                                {showPassword ? <span className='text-blue-500 text-base font-mono font-extrabold'>Hide</span> : <span className='text-red-500 text-base font-mono font-extrabold'>Show</span>}
+                            </button>
+                        </div>
                         <Button type='submit' className='w-full'>Sign up</Button>
                     </div>
                 </form>
