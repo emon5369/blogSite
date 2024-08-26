@@ -50,19 +50,20 @@ function Home() {
                                 </div>
                             </div>
                             <Link to="/login"><button className='bg-[#f4a836] hover:bg-[#f29406] p-3 my-2 rounded-lg text-lg text-white'>Create Your Blog</button></Link>
-                            <div className='my-8'>
-                    <h3 className='text-2xl font-bold text-center mb-4'>What Our Users Say</h3>
-                    <div className='flex flex-wrap justify-center space-x-8'>
-                        <div className='max-w-sm p-4 bg-gray-100 rounded-lg shadow-md'>
-                            <p className='text-gray-700 mb-2'>"This platform is one of the best platform for blogging!"</p>
-                            <p className='text-gray-500 text-sm'>- Jane Doe</p>
-                        </div>
-                        <div className='max-w-sm p-4 bg-gray-100 rounded-lg shadow-md'>
-                            <p className='text-gray-700 mb-2'>"A seamless experience from start to finish."</p>
-                            <p className='text-gray-500 text-sm'>- John Smith</p>
-                        </div>
-                    </div>
-                </div>
+
+                            <div className='mb-8'>
+                                <h3 className='text-2xl font-bold text-center mb-4'>What Our Users Say</h3>
+                                <div className='flex flex-wrap justify-center space-x-4 gap-3'>
+                                    <div className='max-w-sm p-4 bg-gray-100 rounded-lg shadow-md'>
+                                        <p className='text-gray-700 mb-2'>"This platform has transformed the way I share my stories!"</p>
+                                        <p className='text-gray-500 text-sm'>- Saiful Islam</p>
+                                    </div>
+                                    <div className='max-w-sm p-4 bg-gray-100 rounded-lg shadow-md'>
+                                        <p className='text-gray-700 mb-2'>"A seamless experience from start to finish."</p>
+                                        <p className='text-gray-500 text-sm'>- Saidur Rahman</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </Container>
