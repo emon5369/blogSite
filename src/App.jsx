@@ -6,7 +6,7 @@ import { Footer, Header } from "./components";
 import { Outlet } from "react-router-dom"
 
 function App() {
-  const [loading, setloading] = useState();
+  const [loading, setloading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
