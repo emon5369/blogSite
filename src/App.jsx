@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
-import { Footer, Header } from "./components";
+import { Footer, Header, Container } from "./components";
 import { Outlet } from "react-router-dom"
 
 function App() {
@@ -29,7 +29,15 @@ function App() {
         <Footer />
       </div>
     </div>
-  ) : null
+  ) : <div className="w-full py-8 text-center">
+    <Container>
+      <div className="flex flex-wrap">
+        <div className="p-2 w-full">
+          <h1 className="text-2xl text-white font-bold">Loading...</h1>
+        </div>
+      </div>
+    </Container>
+  </div>
 }
 
 export default App

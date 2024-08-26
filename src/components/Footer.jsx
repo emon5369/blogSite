@@ -29,7 +29,7 @@ function Footer() {
                                         className=" text-base font-medium text-gray-900 hover:text-gray-600"
                                         to="/"
                                     >
-                                        Features
+                                        About Us
                                     </Link>
                                 </li>
                                 <li className="mb-4">
@@ -37,7 +37,7 @@ function Footer() {
                                         className=" text-base font-medium text-gray-900 hover:text-gray-600"
                                         to="/"
                                     >
-                                        Pricing
+                                        Our Team
                                     </Link>
                                 </li>
                                 <li className="mb-4">
@@ -53,7 +53,7 @@ function Footer() {
                                         className=" text-base font-medium text-gray-900 hover:text-gray-600"
                                         to="/"
                                     >
-                                        Press Kit
+                                        Blog
                                     </Link>
                                 </li>
                             </ul>
