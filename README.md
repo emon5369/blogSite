@@ -26,6 +26,47 @@
 - **npm**
 - **Appwrite** account for backend services
 
+## Appwrite Setup
+
+This project uses [Appwrite](https://appwrite.io) for authentication, database management, and file storage. Follow these steps to set up Appwrite for this project:
+
+### Step 1: Create a New Project
+
+1. Log in to your Appwrite console.
+2. Create a new project and note down the **Project ID**.
+
+### Step 2: Setup Authentication
+
+1. Navigate to the **Auth** section of your project.
+2. Enable **Email/Password Authentication** in the settings for user registration and login.
+
+### Step 3: Setup Database Collections
+
+1. Go to the **Database** section.
+2. Create a collection named `articles`.
+3. Add the following attributes:
+   - `title` (string)
+   - `content` (string)
+   - `featuredImage` (string) - for storing the uploaded image file IDs
+   - `status` (string)
+   - `userId` (string) - to associate posts with users
+   
+4. Ensure to give the appropriate read and write permissions in the settings for authenticated users.
+
+### Step 4: Setup File Storage
+
+1. Go to the **Storage** section.
+2. Create a new bucket for file uploads (`images`).
+3. Ensure that authenticated users have permission to upload and delete files.
+
+### Step 5: Install the Appwrite SDK
+
+Run the following command to install the Appwrite JavaScript SDK:
+
+```bash
+npm install appwrite
+```
+
 ### Installation
 
 1. **Clone the repository:**
