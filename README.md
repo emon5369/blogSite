@@ -80,6 +80,7 @@ npm install appwrite
 
    ```bash
    npm install
+   npm install appwrite
    ```
 
 3. **Set up environment variables:**
@@ -102,7 +103,8 @@ npm install appwrite
    ```bash
    npm run dev
    ```
-   
+The app should now be running at http://localhost:5173.
+
 ## Demo
 
 Check out the live demo of UBlog: [Click here](https://ublogsite.netlify.app/)
