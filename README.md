@@ -56,12 +56,10 @@ This project uses [Appwrite](https://appwrite.io) for authentication, database m
 ### Step 4: Setup File Storage
 
 1. Go to the **Storage** section.
-2. Create a new bucket for file uploads (`images`).
+2. Create a new bucket for file uploads named `images`.
 3. Ensure that authenticated users have permission to upload and delete files.
 
 ### Step 5: Install the Appwrite SDK
-
-Run the following command to install the Appwrite JavaScript SDK:
 
 ```bash
 npm install appwrite
@@ -80,7 +78,6 @@ npm install appwrite
 
    ```bash
    npm install
-   npm install appwrite
    ```
 
 3. **Set up environment variables:**
