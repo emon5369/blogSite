@@ -51,7 +51,7 @@ This project uses [Appwrite](https://appwrite.io) for authentication, database m
    - `status` (string)
    - `userId` (string) - to associate posts with users
    
-4. Ensure to give the appropriate read and write permissions in the settings for authenticated users.
+4. From the `articles` collection, go to the "Settings" > "Permissions" > " + Add role" and select "All users". Give this user type "Create", "Read", "Update" and "Delete" permissions.
 
 ### Step 4: Setup File Storage
 
