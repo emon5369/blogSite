@@ -32,7 +32,7 @@ This project uses [Appwrite](https://appwrite.io) for authentication, database m
 
 ### Step 1: Create a New Project
 
-1. Log in to your Appwrite console.
+1. Log in with your Appwrite account.
 2. Create a new project and note down the **Project ID**.
 
 ### Step 2: Setup Authentication
@@ -86,11 +86,11 @@ npm install appwrite
    - Add the following environment variables:
 
      ```bash
-     REACT_APP_APPWRITE_ENDPOINT=<Your Appwrite endpoint>
-     REACT_APP_APPWRITE_PROJECT_ID=<Your Appwrite project ID>
-     REACT_APP_APPWRITE_DATABASE_ID=<Your Appwrite database ID>
-     REACT_APP_APPWRITE_COLLECTION_ID=<Your Appwrite collection ID>
-     REACT_APP_APPWRITE_BUCKET_ID=<Your Appwrite bucket ID>
+     VITE_APPWRITE_URL= <Your Appwrite endpoint>
+     VITE_APPWRITE_PROJECT_ID= <Your Appwrite project ID>
+     VITE_APPWRITE_DATABASE_ID= <Your Appwrite database ID>
+     VITE_APPWRITE_COLLECTION_ID= <Your Appwrite collection ID>
+     VITE_APPWRITE_BUCKET_ID= <Your Appwrite bucket ID>
      ```
 
    Replace the placeholder values with your actual Appwrite project details.
