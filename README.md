@@ -26,6 +26,45 @@
 - **npm**
 - **Appwrite** account for backend services
 
+## Appwrite Setup
+
+This project uses [Appwrite](https://appwrite.io) for authentication, database management, and file storage. Follow these steps to set up Appwrite for this project:
+
+### Step 1: Create a New Project
+
+1. Log in with your Appwrite account.
+2. Create a new project and note down the **Project ID**.
+
+### Step 2: Setup Authentication
+
+1. Navigate to the **Auth** section of your project.
+2. Enable **Email/Password Authentication** in the settings for user registration and login.
+
+### Step 3: Setup Database Collections
+
+1. Go to the **Database** section.
+2. Create a collection named `articles`.
+3. Add the following attributes:
+   - `title` (string)
+   - `content` (string)
+   - `featuredImage` (string) - for storing the uploaded image file IDs
+   - `status` (string)
+   - `userId` (string) - to associate posts with users
+   
+4. From the `articles` collection, go to the "Settings" > "Permissions" > " + Add role" and select "All users". Give this user type "Create", "Read", "Update" and "Delete" permissions.
+
+### Step 4: Setup File Storage
+
+1. Go to the **Storage** section.
+2. Create a new bucket for file uploads named `images`.
+3. Ensure that authenticated users have permission to upload and delete files.
+
+### Step 5: Install the Appwrite SDK
+
+```bash
+npm install appwrite
+```
+
 ### Installation
 
 1. **Clone the repository:**
@@ -47,11 +86,11 @@
    - Add the following environment variables:
 
      ```bash
-     REACT_APP_APPWRITE_ENDPOINT=<Your Appwrite endpoint>
-     REACT_APP_APPWRITE_PROJECT_ID=<Your Appwrite project ID>
-     REACT_APP_APPWRITE_DATABASE_ID=<Your Appwrite database ID>
-     REACT_APP_APPWRITE_COLLECTION_ID=<Your Appwrite collection ID>
-     REACT_APP_APPWRITE_BUCKET_ID=<Your Appwrite bucket ID>
+     VITE_APPWRITE_URL= <Your Appwrite endpoint>
+     VITE_APPWRITE_PROJECT_ID= <Your Appwrite project ID>
+     VITE_APPWRITE_DATABASE_ID= <Your Appwrite database ID>
+     VITE_APPWRITE_COLLECTION_ID= <Your Appwrite collection ID>
+     VITE_APPWRITE_BUCKET_ID= <Your Appwrite bucket ID>
      ```
 
    Replace the placeholder values with your actual Appwrite project details.
@@ -61,7 +100,8 @@
    ```bash
    npm run dev
    ```
-   
+The app should now be running at http://localhost:5173.
+
 ## Demo
 
 Check out the live demo of UBlog: [Click here](https://ublogsite.netlify.app/)
