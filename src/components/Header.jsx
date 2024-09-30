@@ -40,11 +40,10 @@ function Header() {
         <header className="py-3 shadow bg-[#ECECEA] relative">
             <Container>
                 <nav className="flex items-center justify-between">
-                    <div className="mr-4">
-                        <Link to='/'>
-                            <Logo className="sm:w-32 w-24"/>
-                        </Link>
-                    </div>
+                    <Link to='/'>
+                        <Logo className="sm:w-32 w-24" />
+                    </Link>
+
                     <div className="flex items-center">
                         {/* Menu Icon*/}
                         <button
@@ -59,16 +58,16 @@ function Header() {
                         <ul className="hidden md:flex items-center md:ml-auto">
                             {navItem.map((item) =>
                                 item.active ? (
-                                    <li key={item.name} className="ml-2 text-base font-semibold">
+                                    <li key={item.name} className="font-semibold">
                                         <button onClick={() => navigate(item.slug)}
-                                            className="inline-block px-6 py-2 duration-200 text-gray-600 hover:bg-slate-300 rounded-full">
+                                            className="inline-block px-5 py-2 duration-200 text-gray-600 hover:bg-slate-300 rounded-full">
                                             {item.name}
                                         </button>
                                     </li>
                                 ) : null
                             )}
                             {authStatus && (
-                                <li className="md:ml-4 text-base">
+                                <li className="text-base">
                                     <LogoutBtn />
                                 </li>
                             )}

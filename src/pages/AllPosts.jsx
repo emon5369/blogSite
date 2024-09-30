@@ -22,14 +22,14 @@ function AllPosts() {
     return (
         <div className="w-full py-8">
             <Container>
-                <div className='mb-2 sm:mb-5 flex justify-between'>
+                <div className='mb-2 px-2 sm:mb-5 flex justify-between items-center'>
                 <SearchBar 
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value) }
                     />
                     <Link to="/add-post">
-                        <button className='bg-[#f4a836] hover:bg-[#f29406] px-4 py-2 rounded text-white font-semibold'>
-                            Create New Post
+                        <button className='bg-[#f4a836] hover:bg-[#f29406] px-2 md:px-4 py-2 rounded-md text-white font-semibold'>
+                            Create Post
                         </button>
                     </Link>
                 </div>

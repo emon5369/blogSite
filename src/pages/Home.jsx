@@ -83,11 +83,11 @@ function Home() {
                     />
                 </div>
 
-                <div className='mb-2 sm:mb-5 flex justify-between'>
+                <div className='mb-2 px-2 sm:mb-5 flex justify-between'>
                     <h3 className='text-[25px] sm:text-3xl font-bold'>Featured Post</h3>
                     <Link to="/add-post">
-                        <button className='bg-[#f4a836] hover:bg-[#f29406] px-4 py-2 rounded text-white font-semibold'>
-                            Create New Post
+                        <button className='bg-[#f4a836] hover:bg-[#f29406] px-2 md:px-4 py-2 rounded text-white font-semibold'>
+                            Create Post
                         </button>
                     </Link>
                 </div>
